@@ -27,6 +27,8 @@ import {
   resample as resampleWASM,
 } from "keyframe-resample";
 import * as draco3d from "draco3dgltf";
+import sharp from 'sharp'
+
 
 export type Config = {
   resolution?: number;
@@ -93,11 +95,13 @@ export async function transform(
     // Custom per-file resolution
     functions.push(
       textureCompress({
+        encoder: sharp,
         pattern: new RegExp(`^(?=${config.degrade}).*$`),
         targetFormat: config.format,
         resize: [degradeResolution, degradeResolution],
       }),
       textureCompress({
+        encoder: sharp,
         pattern: new RegExp(`^(?!${config.degrade}).*$`),
         targetFormat: config.format,
         resize: [resolution, resolution],
@@ -107,11 +111,13 @@ export async function transform(
     // Keep normal maps near lossless
     functions.push(
       textureCompress({
+        encoder: sharp,
         slots: /^(?!normalTexture).*$/, // exclude normal maps
         targetFormat: config.format,
         resize: [resolution, resolution],
       }),
       textureCompress({
+        encoder: sharp,
         slots: /^(?=normalTexture).*$/, // include normal maps
         targetFormat: "jpeg",
         resize: [normalResolution, normalResolution],

@@ -36,12 +36,14 @@
     "@gltf-transform/core": "^4.0.1",
     "@gltf-transform/extensions": "^4.0.1",
     "@gltf-transform/functions": "^4.0.1",
-    "@types/draco3dgltf": "^1.4.3",
     "draco3dgltf": "^1.5.7",
     "keyframe-resample": "^0.1.0",
-    "meshoptimizer": "^0.20.0"
+    "meshoptimizer": "^0.20.0",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
+    "@types/draco3dgltf": "^1.4.3",
+    "@types/node": "^20.14.2",
     "typescript": "^5.4.5"
   }
 }
