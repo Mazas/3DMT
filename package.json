@@ -1,6 +1,6 @@
 {
   "name": "3dmt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "3D model transformer",
   "scripts": {
     "prebuild": "rm -rf dist",
