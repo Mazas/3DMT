@@ -1,0 +1,47 @@
+{
+  "name": "3dmt",
+  "version": "0.0.1",
+  "description": "3D model transformer",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "type": "module",
+  "keywords": [
+    "gltf",
+    "three",
+    "threejs",
+    "webp"
+  ],
+  "author": "Mazas",
+  "maintainers": [
+    "Mazas"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mazas/3dmt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mazas/3dmt/issues"
+  },
+  "homepage": "https://github.com/mazas/3dmt#readme",
+  "bin": {
+    "3dmt": "./index.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "dependencies": {
+    "@gltf-transform/core": "^4.0.1",
+    "@gltf-transform/extensions": "^4.0.1",
+    "@gltf-transform/functions": "^4.0.1",
+    "@types/draco3dgltf": "^1.4.3",
+    "draco3dgltf": "^1.5.7",
+    "keyframe-resample": "^0.1.0",
+    "meshoptimizer": "^0.20.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
