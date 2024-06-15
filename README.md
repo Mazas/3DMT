@@ -5,3 +5,4 @@ them to web friendly formats.
 
 All done in-memory.
 
+Based on [gltfjsx](https://github.com/pmndrs/gltfjsx)
