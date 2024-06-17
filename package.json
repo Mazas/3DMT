@@ -1,6 +1,6 @@
 {
   "name": "@mazas/3dmt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "3D model transformer",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -20,6 +20,9 @@
       "name": "Mazas"
     }
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

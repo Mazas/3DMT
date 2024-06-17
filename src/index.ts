@@ -1,3 +1,1 @@
-import { Config, transform } from "./transformer.js"
-
-export { Config, transform }
+export * from './transformer.js';
