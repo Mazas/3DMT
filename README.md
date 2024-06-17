@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/npm/v/3dmt?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/3dmt)
+[![Version](https://img.shields.io/npm/v/@mazas/3dmt?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/@mazas/3dmt)
 
 # 3D Model Transformer
 
