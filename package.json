@@ -1,6 +1,6 @@
 {
-  "name": "3dmt",
-  "version": "0.0.2",
+  "name": "@mazas/3dmt",
+  "version": "0.0.3",
   "description": "3D model transformer",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -16,7 +16,9 @@
   ],
   "author": "Mazas",
   "maintainers": [
-    "Mazas"
+    {
+      "name": "Mazas"
+    }
   ],
   "license": "MIT",
   "repository": {
@@ -28,7 +30,7 @@
   },
   "homepage": "https://github.com/mazas/3dmt#readme",
   "bin": {
-    "3dmt": "./index.js"
+    "3dmt": "dist/index.js"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
