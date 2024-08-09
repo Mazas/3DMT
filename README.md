@@ -12,11 +12,11 @@ Based on [gltfjsx](https://github.com/pmndrs/gltfjsx)
 
 ## But why tho?
 
-The goal is to reduce the 3D model sizes to improve loading times on the 
-web/ mobile. The intention is to allow reducing the model sizes before 
-serving them from the backend server. Difference from gltfjsx is that this 
-module does the transformation in memory instead of using file system, making 
-it faster. Long term goal is to reduce the dependency on node native packages 
+The goal is to reduce the 3D model sizes to improve loading times on the
+web/ mobile. The intention is to allow reducing the model sizes before
+serving them from the backend server. Difference from gltfjsx is that this
+module does the transformation in memory instead of using file system, making
+it faster. Long term goal is to reduce the dependency on node native packages
 which would allow this to be useful on edge compute runtimes such as Fastly.
 
 ## Installing
@@ -24,19 +24,20 @@ which would allow this to be useful on edge compute runtimes such as Fastly.
 You can install the package form npm with:
 
 ```
-npm i 3dmt
+npm i @mazas/3dmt
 ```
 
 ## Usage
 
 ```js
-import { transform } from "3dmt";
+import { transform } from '@mazas/3dmt';
 
-const data = await transform("https://example.com/model.glb", {
-  format: "webp",
+const data = await transform('https://example.com/model.glb', {
+  format: 'webp',
 });
 ```
 
 ## Contributing
-Just clone the repo, make a branch and start messing around. Create a PR if 
+
+Just clone the repo, make a branch and start messing around. Create a PR if
 you want your changes merged.

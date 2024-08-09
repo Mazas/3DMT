@@ -1,4 +1,4 @@
-import { WebIO } from "@gltf-transform/core";
+import { WebIO } from '@gltf-transform/core';
 import {
   simplify,
   instance,
@@ -15,26 +15,25 @@ import {
   draco,
   palette,
   unpartition,
-} from "@gltf-transform/functions";
-import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
+} from '@gltf-transform/functions';
+import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import {
   MeshoptDecoder,
   MeshoptEncoder,
   MeshoptSimplifier,
-} from "meshoptimizer";
+} from 'meshoptimizer';
 import {
   ready as resampleReady,
   resample as resampleWASM,
-} from "keyframe-resample";
-import * as draco3d from "draco3dgltf";
-import sharp from 'sharp'
-
+} from 'keyframe-resample';
+import * as draco3d from 'draco3dgltf';
+import sharp from 'sharp';
 
 export type Config = {
   resolution?: number;
   degraderesolution?: number;
   degrade?: string;
-  format?: "jpeg" | "png" | "webp" | "avif";
+  format?: 'jpeg' | 'png' | 'webp' | 'avif';
   keepmaterials?: boolean;
   keepmeshes?: boolean;
   simplify?: boolean;
@@ -45,17 +44,17 @@ export type Config = {
 
 export async function transform(
   file: string,
-  config: Config = {}
+  config: Config = {},
 ): Promise<Uint8Array> {
   await MeshoptDecoder.ready;
   await MeshoptEncoder.ready;
   const io = new WebIO()
     .registerExtensions(ALL_EXTENSIONS)
     .registerDependencies({
-      "draco3d.decoder": await draco3d.createDecoderModule(),
-      "draco3d.encoder": await draco3d.createEncoderModule(),
-      "meshopt.decoder": MeshoptDecoder,
-      "meshopt.encoder": MeshoptEncoder,
+      'draco3d.decoder': await draco3d.createDecoderModule(),
+      'draco3d.encoder': await draco3d.createEncoderModule(),
+      'meshopt.decoder': MeshoptDecoder,
+      'meshopt.encoder': MeshoptEncoder,
     });
   const document = await io.read(file);
   const resolution = config.resolution ?? 1024;
@@ -68,7 +67,7 @@ export async function transform(
     dedup(),
     instance({ min: 5 }),
     flatten(),
-    dequantize()
+    dequantize(),
   );
   if (!config.keepmeshes) {
     functions.push(join());
@@ -83,13 +82,13 @@ export async function transform(
         simplifier: MeshoptSimplifier,
         ratio: config.ratio ?? 0,
         error: config.error ?? 0.0001,
-      })
+      }),
     );
   }
   functions.push(
     resample({ ready: resampleReady, resample: resampleWASM }),
     prune({ keepAttributes: false, keepLeaves: false }),
-    sparse()
+    sparse(),
   );
   if (config.degrade) {
     // Custom per-file resolution
@@ -105,7 +104,7 @@ export async function transform(
         pattern: new RegExp(`^(?!${config.degrade}).*$`),
         targetFormat: config.format,
         resize: [resolution, resolution],
-      })
+      }),
     );
   } else {
     // Keep normal maps near lossless
@@ -119,9 +118,9 @@ export async function transform(
       textureCompress({
         encoder: sharp,
         slots: /^(?=normalTexture).*$/, // include normal maps
-        targetFormat: "jpeg",
+        targetFormat: 'jpeg',
         resize: [normalResolution, normalResolution],
-      })
+      }),
     );
   }
   functions.push(draco());
