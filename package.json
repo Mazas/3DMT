@@ -1,6 +1,6 @@
 {
   "name": "@mazas/3dmt",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "3D model transformer",
   "scripts": {
     "test": "npm run test:format",
@@ -41,18 +41,18 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "dependencies": {
-    "@gltf-transform/core": "^4.0.8",
-    "@gltf-transform/extensions": "^4.0.8",
-    "@gltf-transform/functions": "^4.0.8",
+    "@gltf-transform/core": "^4.1.0",
+    "@gltf-transform/extensions": "^4.1.0",
+    "@gltf-transform/functions": "^4.1.0",
     "draco3dgltf": "^1.5.7",
     "keyframe-resample": "^0.1.0",
-    "meshoptimizer": "^0.21.0",
-    "sharp": "^0.33.4"
+    "meshoptimizer": "^0.22.0",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@types/draco3dgltf": "^1.4.3",
-    "@types/node": "^20.14.14",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "@types/node": "^22.10.1",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2"
   }
 }
