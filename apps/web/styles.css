@@ -1,0 +1,360 @@
+/* -----------------------------------------------------------------------
+   Reset & base
+----------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2e3145;
+  --accent: #5b6af0;
+  --accent-hover: #4a58e0;
+  --text: #e2e4f0;
+  --text-muted: #7b80a0;
+  --error: #e05b5b;
+  --toolbar-h: 60px;
+  --radius: 8px;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* -----------------------------------------------------------------------
+   Toolbar
+----------------------------------------------------------------------- */
+#toolbar {
+  height: var(--toolbar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}
+
+#url-input {
+  flex: 1;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#url-input:focus {
+  border-color: var(--accent);
+}
+
+#url-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------------------------------------
+   Config panel (collapsible details/summary)
+----------------------------------------------------------------------- */
+#config-panel {
+  position: relative;
+}
+
+#config-panel > summary {
+  height: 36px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-muted);
+  white-space: nowrap;
+  list-style: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#config-panel > summary:hover,
+#config-panel[open] > summary {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+#config-panel[open] > summary::after {
+  content: ' ▴';
+  font-size: 10px;
+}
+
+#config-panel > summary::after {
+  content: ' ▾';
+  font-size: 10px;
+}
+
+#config-grid {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 280px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+#config-grid label {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+#config-grid select,
+#config-grid input[type='range'] {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 4px 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+#config-grid input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+#simplify-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#ratio-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+#ratio-wrap label {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#ratio-value {
+  min-width: 28px;
+  text-align: right;
+  color: var(--text);
+}
+
+/* -----------------------------------------------------------------------
+   Transform button
+----------------------------------------------------------------------- */
+#transform-btn {
+  height: 36px;
+  padding: 0 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+#transform-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+#transform-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* -----------------------------------------------------------------------
+   Viewers
+----------------------------------------------------------------------- */
+#viewers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - var(--toolbar-h));
+  gap: 1px;
+  background: var(--border);
+}
+
+.viewer-wrap {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.viewer-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  min-height: 36px;
+}
+
+.viewer-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.size-tag {
+  font-size: 12px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 8px;
+}
+
+model-viewer {
+  flex: 1;
+  width: 100%;
+  background: var(--bg);
+  --poster-color: transparent;
+}
+
+/* Right viewer: relative container so spinner can be absolutely positioned */
+#viewer-after-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#viewer-after-wrap model-viewer {
+  flex: 1;
+}
+
+/* -----------------------------------------------------------------------
+   Spinner overlay
+----------------------------------------------------------------------- */
+#spinner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(15, 17, 23, 0.75);
+  backdrop-filter: blur(4px);
+  color: var(--text-muted);
+  font-size: 13px;
+  z-index: 5;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Modal
+----------------------------------------------------------------------- */
+#modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+#modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  max-width: 440px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+#modal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--error);
+}
+
+#modal-msg {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+#modal-close {
+  align-self: flex-end;
+  height: 32px;
+  padding: 0 18px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#modal-close:hover {
+  background: var(--accent-hover);
+}

@@ -1,9 +1,9 @@
 {
   "name": "@mazas/3dmt",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "3D model transformer",
   "scripts": {
-    "test": "npm run test:format",
+    "test": "vitest run",
     "test:format": "prettier --check --ignore-unknown .",
     "format": "prettier --write --ignore-unknown .",
     "prebuild": "rm -rf dist",
@@ -40,19 +40,21 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
-    "@gltf-transform/core": "^4.1.0",
-    "@gltf-transform/extensions": "^4.1.0",
-    "@gltf-transform/functions": "^4.1.0",
+    "@gltf-transform/core": "^4.3.0",
+    "@gltf-transform/extensions": "^4.3.0",
+    "@gltf-transform/functions": "^4.3.0",
     "draco3dgltf": "^1.5.7",
     "keyframe-resample": "^0.1.0",
-    "meshoptimizer": "^0.22.0",
-    "sharp": "^0.33.5"
+    "meshoptimizer": "^1.1.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/draco3dgltf": "^1.4.3",
-    "@types/node": "^22.10.1",
-    "prettier": "^3.4.1",
-    "typescript": "^5.7.2"
+    "@types/node": "^22.19.19",
+    "prettier": "^3.8.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.6"
   }
 }
