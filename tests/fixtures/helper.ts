@@ -88,9 +88,7 @@ export async function makeGLB(): Promise<Uint8Array> {
     .setImage(new Uint8Array(pngBytes));
 
   // --- Material ---
-  const material = doc
-    .createMaterial('mat')
-    .setBaseColorTexture(texture);
+  const material = doc.createMaterial('mat').setBaseColorTexture(texture);
 
   // --- Primitive / Mesh / Node / Scene ---
   const prim = doc

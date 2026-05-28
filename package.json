@@ -1,6 +1,6 @@
 {
   "name": "@mazas/3dmt",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "3D model transformer",
   "scripts": {
     "test": "vitest run",

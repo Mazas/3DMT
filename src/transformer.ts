@@ -74,10 +74,8 @@ export async function transform(
   }
   if (config.simplify) {
     functions.push(
-      // Weld vertices
       // @ts-ignore
       weld({ tolerance: config.weld ?? 0.0001 / 2 }),
-      // Simplify meshes
       simplify({
         simplifier: MeshoptSimplifier,
         ratio: config.ratio ?? 0,
@@ -91,33 +89,32 @@ export async function transform(
     sparse(),
   );
   if (config.degrade) {
-    // Custom per-file resolution
+    const degradePattern = escapeRegex(config.degrade);
     functions.push(
       textureCompress({
         encoder: sharp,
-        pattern: new RegExp(`^(?=${config.degrade}).*$`),
+        pattern: new RegExp(`^(?=${degradePattern}).*$`),
         targetFormat: config.format,
         resize: [degradeResolution, degradeResolution],
       }),
       textureCompress({
         encoder: sharp,
-        pattern: new RegExp(`^(?!${config.degrade}).*$`),
+        pattern: new RegExp(`^(?!${degradePattern}).*$`),
         targetFormat: config.format,
         resize: [resolution, resolution],
       }),
     );
   } else {
-    // Keep normal maps near lossless
     functions.push(
       textureCompress({
         encoder: sharp,
-        slots: /^(?!normalTexture).*$/, // exclude normal maps
+        slots: /^(?!normalTexture).*$/,
         targetFormat: config.format,
         resize: [resolution, resolution],
       }),
       textureCompress({
         encoder: sharp,
-        slots: /^(?=normalTexture).*$/, // include normal maps
+        slots: /^(?=normalTexture).*$/,
         targetFormat: 'jpeg',
         resize: [normalResolution, normalResolution],
       }),
@@ -126,4 +123,17 @@ export async function transform(
   functions.push(draco());
   await document.transform(...functions);
   return await io.writeBinary(document);
+}
+
+function escapeRegex(input: string, { maxLength = 200 } = {}) {
+  if (input == null || input === '') {
+    return '';
+  }
+  if (typeof input !== 'string') {
+    throw new TypeError(`Pattern must be a string, got ${typeof input}`);
+  }
+  if (input.length > maxLength) {
+    throw new Error(`Pattern exceeds max allowed length of ${maxLength}`);
+  }
+  return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

@@ -92,7 +92,9 @@ body {
   color: var(--text-muted);
   white-space: nowrap;
   list-style: none;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 #config-panel > summary:hover,
@@ -192,7 +194,9 @@ body {
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.15s, opacity 0.15s;
+  transition:
+    background 0.15s,
+    opacity 0.15s;
 }
 
 #transform-btn:hover:not(:disabled) {

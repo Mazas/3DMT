@@ -1,5 +1,7 @@
 // DOM refs
-const urlInput = /** @type {HTMLInputElement} */ (document.getElementById('url-input'));
+const urlInput = /** @type {HTMLInputElement} */ (
+  document.getElementById('url-input')
+);
 const transformBtn = document.getElementById('transform-btn');
 const viewerBefore = document.getElementById('viewer-before');
 const viewerAfter = document.getElementById('viewer-after');
@@ -9,14 +11,26 @@ const spinnerOverlay = document.getElementById('spinner-overlay');
 const modal = document.getElementById('modal');
 const modalMsg = document.getElementById('modal-msg');
 const modalClose = document.getElementById('modal-close');
-const cfgFormat = /** @type {HTMLSelectElement} */ (document.getElementById('cfg-format'));
-const cfgResolution = /** @type {HTMLSelectElement} */ (document.getElementById('cfg-resolution'));
-const cfgSimplify = /** @type {HTMLInputElement} */ (document.getElementById('cfg-simplify'));
-const cfgRatio = /** @type {HTMLInputElement} */ (document.getElementById('cfg-ratio'));
+const cfgFormat = /** @type {HTMLSelectElement} */ (
+  document.getElementById('cfg-format')
+);
+const cfgResolution = /** @type {HTMLSelectElement} */ (
+  document.getElementById('cfg-resolution')
+);
+const cfgSimplify = /** @type {HTMLInputElement} */ (
+  document.getElementById('cfg-simplify')
+);
+const cfgRatio = /** @type {HTMLInputElement} */ (
+  document.getElementById('cfg-ratio')
+);
 const ratioValue = document.getElementById('ratio-value');
 const ratioWrap = document.getElementById('ratio-wrap');
-const cfgKeepmaterials = /** @type {HTMLInputElement} */ (document.getElementById('cfg-keepmaterials'));
-const cfgKeepmeshes = /** @type {HTMLInputElement} */ (document.getElementById('cfg-keepmeshes'));
+const cfgKeepmaterials = /** @type {HTMLInputElement} */ (
+  document.getElementById('cfg-keepmaterials')
+);
+const cfgKeepmeshes = /** @type {HTMLInputElement} */ (
+  document.getElementById('cfg-keepmeshes')
+);
 
 // ---------------------------------------------------------------------------
 // Config panel: toggle ratio slider visibility
@@ -77,7 +91,8 @@ async function fetchRemoteSize(url) {
 function readConfig() {
   const config = {};
   if (cfgFormat.value) config.format = cfgFormat.value;
-  if (cfgResolution.value) config.resolution = parseInt(cfgResolution.value, 10);
+  if (cfgResolution.value)
+    config.resolution = parseInt(cfgResolution.value, 10);
   if (cfgSimplify.checked) {
     config.simplify = true;
     config.ratio = parseFloat(cfgRatio.value);
@@ -130,8 +145,12 @@ transformBtn.addEventListener('click', async () => {
     ]);
 
     if (!transformResponse.ok) {
-      const errBody = await transformResponse.json().catch(() => ({ error: 'Unknown error' }));
-      throw new Error(errBody.error ?? `Server error ${transformResponse.status}`);
+      const errBody = await transformResponse
+        .json()
+        .catch(() => ({ error: 'Unknown error' }));
+      throw new Error(
+        errBody.error ?? `Server error ${transformResponse.status}`,
+      );
     }
 
     const transformedBlob = await transformResponse.blob();
